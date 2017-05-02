@@ -5,13 +5,13 @@
 
 ## Sample
 
-Input:
+Input:  
 ![](./results/ballet.gif)
 
-Mask:
+Mask:  
 ![](./results/ballet_mask.png)
 
-Result:
+Result:  
 ![](./results/ballet_cgraph.gif)
 
 
