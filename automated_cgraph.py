@@ -59,7 +59,7 @@ class ImageHelper(object):
 
 class VideoHelper(object):
 
-    def __init__(self, video_file, frame_start=0, frame_end=np.float('inf'), do_loop=True, preload_frames=1000):
+    def __init__(self, video_file, frame_start=0, frame_end=np.float('inf'), do_loop=True, preload_frames=500):
 
         self.preloaded = False
         self.preload_frames = preload_frames
@@ -87,7 +87,7 @@ class VideoHelper(object):
         if not self.cap.isOpened():
             raise RuntimeError("Failed to initialize capture for file {}".format(video_file))
 
-        self.n_orig_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        self.n_orig_frames = int(self.cap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT))
         self.frame_start = max(frame_start, 0)
 
         if frame_end < 0:
@@ -121,7 +121,7 @@ class VideoHelper(object):
             idx -= self.frame_start
             return self.frames[idx]
         else:
-            self.cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+            self.cap.set(cv2.cv.CV_CAP_PROP_POS_FRAMES, idx)
             ret, frame = self.cap.read(1)
             if ret == False:
                 raise RuntimeError("Failed to read frame no. {} from file {}".format(idx, self.video_file))
